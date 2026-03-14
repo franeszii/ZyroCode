@@ -1,0 +1,125 @@
+command /daily:
+    trigger:
+        set {_gui} to chest inventory with 4 rows named "&8&lᴢʏʀᴏᴄᴏᴅᴇ - ᴄᴏᴅᴢɪᴇɴɴᴀ ɴᴀɢʀᴏᴅᴀ"
+        loop numbers from 0 to 30:
+            if loop-number + 1 is {dzienne.%player%.dzien}:
+                set slot loop-number of {_gui} to emerald named "&aDzień %loop-number + 1% - Kliknij, aby odebrać"
+            else:
+                set slot loop-number of {_gui} to chest named "&7Dzień %loop-number + 1%"
+        open {_gui} to player
+
+on inventory click:
+    if name of player's current inventory is "&8&lᴢʏʀᴏᴄᴏᴅᴇ - ᴄᴏᴅᴢɪᴇɴɴᴀ ɴᴀɢʀᴏᴅᴀ":
+        cancel event
+        loop numbers from 0 to 30:
+            if clicked slot is loop-number:
+                if {dzienne.%player%.dzien} is not set:
+                    set {dzienne.%player%.dzien} to 1
+                if loop-number + 1 is not {dzienne.%player%.dzien}:
+                    send "&cNie masz odblokowane tego dnia!" to player
+                    stop
+                if {dzienne.%player%.ostatnie} is set:
+                    set {_time} to difference between now and {dzienne.%player%.ostatnie}
+                    if {_time} < 24 hours:
+                        send "&cNie możesz jeszcze odebrać nagrody! Spróbuj za %difference between 24 hours and {_time}%." to player
+                        stop
+
+                if {dzienne.%player%.dzien} is 1:
+                    give 5 diamonds to player
+                    send "&aDzień 1: 5 diamentów!" to player
+                if {dzienne.%player%.dzien} is 2:
+                    give 10 gold ingots to player
+                    send "&aDzień 2: 10 sztuk złota!" to player
+                if {dzienne.%player%.dzien} is 3:
+                    give 1 diamond sword to player
+                    send "&aDzień 3: Diamentowy miecz!" to player
+                if {dzienne.%player%.dzien} is 4:
+                    give 32 cooked beef to player
+                    send "&aDzień 4: 32 pieczone mięso!" to player
+                if {dzienne.%player%.dzien} is 5:
+                    give 5 emeralds to player
+                    send "&aDzień 5: 5 szmaragdów!" to player
+                if {dzienne.%player%.dzien} is 6:
+                    give 64 arrows to player
+                    send "&aDzień 6: 64 strzały!" to player
+                if {dzienne.%player%.dzien} is 7:
+                    give 1 bow to player
+                    send "&aDzień 7: Łuk!" to player
+                if {dzienne.%player%.dzien} is 8:
+                    give 16 iron ingots to player
+                    send "&aDzień 8: 16 sztabek żelaza!" to player
+                if {dzienne.%player%.dzien} is 9:
+                    give 64 oak logs to player
+                    send "&aDzień 9: 64 drewna dębowego!" to player
+                if {dzienne.%player%.dzien} is 10:
+                    give 1 enchanted book to player
+                    send "&aDzień 10: Księga zaklęć!" to player
+                if {dzienne.%player%.dzien} is 11:
+                    give 32 bread to player
+                    send "&aDzień 11: 32 chleba!" to player
+                if {dzienne.%player%.dzien} is 12:
+                    give 1 iron pickaxe to player
+                    send "&aDzień 12: Żelazny kilof!" to player
+                if {dzienne.%player%.dzien} is 13:
+                    give 5 cooked chicken to player
+                    send "&aDzień 13: 5 pieczonych kurczaków!" to player
+                if {dzienne.%player%.dzien} is 14:
+                    give 1 golden apple to player
+                    send "&aDzień 14: Złote jabłko!" to player
+                if {dzienne.%player%.dzien} is 15:
+                    give 64 cobblestone to player
+                    send "&aDzień 15: 64 kamienia!" to player
+                if {dzienne.%player%.dzien} is 16:
+                    give 1 shield to player
+                    send "&aDzień 16: Tarcza!" to player
+                if {dzienne.%player%.dzien} is 17:
+                    give 10 cooked salmon to player
+                    send "&aDzień 17: 10 pieczonych łososi!" to player
+                if {dzienne.%player%.dzien} is 18:
+                    give 1 iron helmet to player
+                    send "&aDzień 18: Żelazny hełm!" to player
+                if {dzienne.%player%.dzien} is 19:
+                    give 64 diamond to player
+                    send "&aDzień 19: 64 diamenty!" to player
+                if {dzienne.%player%.dzien} is 20:
+                    give 1 diamond chestplate to player
+                    send "&aDzień 20: Diamentowa zbroja!" to player
+                if {dzienne.%player%.dzien} is 21:
+                    give 32 carrots to player
+                    send "&aDzień 21: 32 marchewki!" to player
+                if {dzienne.%player%.dzien} is 22:
+                    give 1 iron sword to player
+                    send "&aDzień 22: Żelazny miecz!" to player
+                if {dzienne.%player%.dzien} is 23:
+                    give 5 lapis lazuli to player
+                    send "&aDzień 23: 5 lapisu!" to player
+                if {dzienne.%player%.dzien} is 24:
+                    give 1 potion of healing to player
+                    send "&aDzień 24: Mikstura leczenia!" to player
+                if {dzienne.%player%.dzien} is 25:
+                    give 64 oak planks to player
+                    send "&aDzień 25: 64 deski dębowe!" to player
+                if {dzienne.%player%.dzien} is 26:
+                    give 1 golden sword to player
+                    send "&aDzień 26: Złoty miecz!" to player
+                if {dzienne.%player%.dzien} is 27:
+                    give 32 cooked porkchop to player
+                    send "&aDzień 27: 32 pieczone wieprzowiny!" to player
+                if {dzienne.%player%.dzien} is 28:
+                    give 1 enchanted book to player
+                    send "&aDzień 28: Księga zaklęć!" to player
+                if {dzienne.%player%.dzien} is 29:
+                    give 16 arrows to player
+                    send "&aDzień 29: 16 strzał!" to player
+                if {dzienne.%player%.dzien} is 30:
+                    give 1 diamond pickaxe to player
+                    send "&aDzień 30: Diamentowy kilof!" to player
+                if {dzienne.%player%.dzien} is 31:
+                    give 1 golden apple to player
+                    send "&aDzień 31: Złote jabłko!" to player
+
+                set {dzienne.%player%.ostatnie} to now
+                add 1 to {dzienne.%player%.dzien}
+                if {dzienne.%player%.dzien} > 31:
+                    set {dzienne.%player%.dzien} to 1
+                close player's inventory

@@ -1,0 +1,210 @@
+# ic-randomevents
+# autor: franeszii
+# info: 40 eventów do wylosowania, dobre i złe, złych jest więcej
+
+options:
+  randomitems: diamond, emerald, netherite ingot, iron sword, bow, cooked beef, golden apple, ender pearl, potion of healing, stick, arrow, shield, torch, bread, chainmail helmet, iron pickaxe, diamond axe, crossbow, prismarine shard, flint and steel, enchanted book, experience bottle, quartz, slimeball, leather boots, carrot
+
+every 1 minutes:
+    loop all players:
+        set {_p} to loop-player
+
+        # Wagi dla losowania (slowness ma wagę 3)
+        set {_rand} to random integer between 1 and 45
+        if {_rand} <= 26:
+            if {_rand} = 4:
+                set {_losuj} to 4
+            else:
+                if {_rand} > 4:
+                    set {_losuj} to {_rand} + 7
+                else:
+                    set {_losuj} to {_rand}
+        else if {_rand} > 26 and {_rand} <= 36:
+            set {_losuj} to 27
+        else:
+            set {_losuj} to {_rand} - 18
+
+        if {_losuj} = 1:
+            set block below {_p} to lava
+            send "&c🔥 Pojawiła się lawa pod tobą!" to {_p}
+
+        if {_losuj} = 2:
+            give diamond to {_p}
+            send "&b💎 Otrzymujesz diament!" to {_p}
+
+        if {_losuj} = 3:
+            give emerald to {_p}
+            send "&a💚 Otrzymujesz szmaragd!" to {_p}
+
+        if {_losuj} = 4:
+            apply slowness 2 to {_p} for 1 minute
+            set {efekty.slownosc::%{_p}%} to true
+            send "&7🐌 Zostajesz spowolniony na 1 minutę!" to {_p}
+
+        if {_losuj} = 5:
+            apply blindness 255 to {_p} for 1 minute
+            set {efekty.slepota::%{_p}%} to true
+            send "&8🌫️ Jesteś ślepy przez 1 minutę!" to {_p}
+
+        if {_losuj} = 6:
+            apply nausea 255 to {_p} for 1 minute
+            set {efekty.mdlosci::%{_p}%} to true
+            send "&d🤢 Mdłości przez 1 minutę!" to {_p}
+
+        if {_losuj} = 7:
+            spawn falling block dripstone block at {_p}'s location offset by (0, 5, 0)
+            send "&f🪨 Dripstone spada na ciebie!" to {_p}
+
+        if {_losuj} = 8:
+            summon fireball {_p}
+            send "&c🔥 Fireball wybucha przy tobie!" to {_p}
+
+        if {_losuj} = 9:
+            spawn ghast at {_p}'s location
+            send "&f👻 Ghast pojawił się obok ciebie!" to {_p}
+
+        if {_losuj} = 10:
+            spawn creeper at {_p}'s location
+            send "&a💣 Creeper obok ciebie!" to {_p}
+
+        if {_losuj} = 11:
+            excute console command "attribute {_p} minecraft:scale base set 0.001"
+            send "&6🔸zostałeś pomniejszony" to {_p}
+
+        if {_losuj} = 12:
+            give 5 diamond to {_p}
+            send "&b💎 +5 diamentów!" to {_p}
+
+        if {_losuj} = 13:
+            spawn pig at {_p}'s location
+            spawn cow at {_p}'s location
+            spawn sheep at {_p}'s location
+            spawn cow at {_p}'s location
+            send "&c🗿 DOSTAWA JEDZENIA!" to {_p}
+
+        if {_losuj} = 14:
+            spawn ravager at {_p}'s location
+            send "&7🐃 Ravager przy tobie!" to {_p}
+
+        if {_losuj} = 15:
+            apply bad omen 255 to {_p} for 1 minute
+            send "&4🏰 dostałeś efekt bad omen!" to {_p}
+
+        if {_losuj} = 16:
+            spawn villager at {_p}'s location
+            set profession of last spawned villager to librarian
+            set level of last spawned villager to 5
+            make last spawned villager trade 20 emerald and 1 book for enchanted book of mending
+            send "&a📚 Villager pojawił się!" to {_p}
+
+        if {_losuj} = 17:
+            spawn primed tnt at {_p}'s location
+            send "&c💥 TNT wybucha!" to {_p}
+
+        if {_losuj} = 18:
+            if {_p}'s inventory is not empty:
+                set slot 0 of loop-player's inventory to air
+                send "&c❌ Straciłeś losowy przedmiot!" to {_p}
+            else:
+                send "&7🎒 Nie masz nic do stracenia!" to {_p}
+
+        if {_losuj} = 19:
+            damage {_p} by 4
+            send "&c💔 Tracisz 2 serca!" to {_p}
+
+        if {_losuj} = 20:
+            damage {_p} by 10
+            send "&c💔💔 Tracisz 5 serc!" to {_p}
+
+        if {_losuj} = 21:
+            damage {_p} by 9
+            send "&c💀 Tracisz 7 serc!" to {_p}
+
+        if {_losuj} = 22:
+            kill {_p}
+            send "&4☠️ Zostałeś zabity przez los!" to {_p}
+
+        if {_losuj} = 23:
+            apply fire resistance 1 to {_p} for 1 minute
+            set {efekty.ognioodpornosc::%{_p}%} to true
+            send "&6🔥 Odporność na ogień przez 1 minutę!" to {_p}
+
+        if {_losuj} = 24:
+            apply speed 255 to {_p} for 1 minute
+            set {efekty.predkosc::%{_p}%} to true
+            send "&e⚡ Nadludzka prędkość przez 1 minutę!" to {_p}
+
+        if {_losuj} = 25:
+            apply jump boost 255 to {_p} for 1 minute
+            set {efekty.skok::%{_p}%} to true
+            send "&a🦘 Super skok przez 1 minutę!" to {_p}
+
+        if {_losuj} = 26:
+            apply slowness 255 to {_p} for 1 minute
+            set {efekty.zamrozenie::%{_p}%} to true
+            send "&9🧊 Nie możesz się ruszać przez 1 minutę!" to {_p}
+
+        if {_losuj} = 27:
+            set {_itemList::*} to {@randomitems::*}
+            set {_randomIndex} to random integer between 1 and size of {_itemList::*}
+            set {_randomItem} to {_itemList::%{_randomIndex}%}
+            give {_randomItem} to {_p}
+            send "&6🎁 Otrzymujesz losowy przedmiot: %{_randomItem}%!" to {_p}
+
+        if {_losuj} = 28:
+            spawn creeper at {_p}'s location
+            set powered of last spawned creeper to true
+            send "&4⚡ Naładowany creeper pojawił się obok ciebie!" to {_p}
+
+        if {_losuj} = 29:
+            strike lightning at {_p}'s location
+            send "&e⚡ Piorun uderza w ciebie!" to {_p}
+
+        if {_losuj} = 30:
+            loop 1000000 times:
+                strike lightning at {_p}'s location
+            send "&e⚡⚡⚡ Trzy pioruny uderzają w ciebie!" to {_p}
+
+        if {_losuj} = 31:
+            loop 100 times:
+                strike lightning at {_p}'s location
+            send "&4⚡⚡⚡⚡⚡ 100 piorunów uderza w ciebie! Uważaj!" to {_p}
+
+        if {_losuj} = 32:
+            set block at {_p}'s location to lava
+            send "&c🔥 Lawa pojawiła się pod tobą!" to {_p}
+
+        if {_losuj} = 33:
+            set fire ticks of {_p} to 200
+            send "&c🔥 Zostałeś podpalony!" to {_p}
+
+        if {_losuj} = 34:
+            set {_world} to {_p}'s world
+            set {_x} to random integer between 0 and 1000
+            set {_y} to random integer between 60 and 100
+            set {_z} to random integer between 0 and 1000
+            teleport {_p} to location {_x}, {_y}, {_z} in {_world}
+            send "&6✈️ Zostałeś przeteleportowany na losowe koordynaty!" to {_p}
+
+        if {_losuj} = 35:
+            spawn wolf at {_p}'s location
+            send "&a🐺 Wilk pojawił się obok ciebie!" to {_p}
+
+        if {_losuj} = 36:
+                kick {_p} due to "Zostałeś wylosowany jako kara."
+                broadcast "&c⚠️ Gracz %{_p}% został wyrzucony z serwera jako kara!"
+
+        if {_losuj} = 37:
+            excute console command "attribute {_p} minecraft:scale base set 1"
+
+
+        if {_losuj} = 38:
+            excute console command "attribute {_p} minecraft:scale base set 100"
+
+
+        if {_losuj} = 39:
+            excute console command "attribute {_p} minecraft:scale base set 5"
+
+
+        if {_losuj} = 40:
+            excute console command "attribute {_p} minecraft:scale base set 47"

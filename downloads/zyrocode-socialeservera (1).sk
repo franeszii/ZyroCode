@@ -1,0 +1,20 @@
+##############################################
+#   ZyroCode-socialeservera
+##############################################
+
+command /sociale:
+    trigger:
+        set {gui} to chest inventory with 4 rows named "&c&lꜱᴏᴄɪᴀʟᴇ ꜱᴇʀᴠᴇʀᴀ" 
+        open {gui} to player
+
+        set slot 31 of {gui} to barrier named "&c&lᴢᴀᴍᴋɴɪᴊ ɢᴜɪ!" with lore "&7&lᴢᴀᴍʏᴋᴀ ɢᴜɪ"
+        set slot 2 of {gui} to light blue wool named "&1&lᴅɪꜱᴄᴏʀᴅ:" with lore "&7&lᴅᴄ.ɢɢ/ᴢʏʀᴏᴄᴏᴅᴇ"
+        set slot 6 of {gui} to red wool named "&c&lʏᴏᴜᴛᴜʙᴇ:" with lore "&7&lᴅᴄ.ɢɢ/ᴢʏʀᴏᴄᴏᴅᴇ"
+        set slot 12 of {gui} to black wool named "&8&lᴛɪᴋᴛᴏᴋ:" with lore "&7&lᴅᴄ.ɢɢ/ᴢʏʀᴏᴄᴏᴅᴇ"
+        set slot 14 of {gui} to yellow wool named "&e&lꜱᴛʀᴏɴᴀ:" with lore "&7&lᴅᴄ.ɢɢ/ᴢʏʀᴏᴄᴏᴅᴇ"
+
+on inventory click:
+    if name of {gui} is "&c&lꜱᴏᴄɪᴀʟᴇ ꜱᴇʀᴠᴇʀᴀ":
+        cancel event 
+        if clicked slot = 31:
+            close player's inventory
