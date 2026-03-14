@@ -1,0 +1,202 @@
+# ==========================
+# ZYRO ITEMY
+# ==========================
+
+command /zyroitemy [<text>]:
+    trigger:
+
+        # PANEL
+        if arg-1 is "panel":
+            if player does not have permission "zyrocode.itemy":
+                send "&cNie masz permisji do tej komendy!"
+                stop
+
+            set {_gui} to chest inventory with 5 rows named "&8&lᴢʏʀᴏ ɪᴛᴇᴍʏ"
+
+            # WITHERBALL
+            set {_wball} to wither skeleton skull named "&8&lᴡɪᴛʜᴇʀʙᴀʟʟ"
+            set lore of {_wball} to "&7Wystrzeliwuje &7czaszke withera", "&8Kliknij PPM aby użyć"
+            set slot 10 of {_gui} to {_wball}
+
+            # FIREBALL
+            set {_fball} to fire charge named "&c&lꜰɪʀᴇʙᴀʟʟ"
+            set lore of {_fball} to "&7Wystrzeliwuje &cpłonącą kulę", "&8Kliknij PPM aby użyć"
+            set slot 12 of {_gui} to {_fball}
+
+            # ENDERBALL
+            set {_eball} to ender dragon spawn egg named "&d&lᴇɴᴅᴇʀʙᴀʟʟ"
+            set lore of {_eball} to "&7Wystrzeliwuje &doddech smoka", "&8Kliknij PPM aby użyć"
+            set slot 14 of {_gui} to {_eball}
+
+            # MIECZ PIORUNOWCÓW
+            set {_sword} to netherite sword named "&b&lᴍɪᴇᴄᴢ ᴘɪᴏʀᴜɴᴏᴡᴄóᴡ"
+            set lore of {_sword} to "&7Przywołuje &bpiorun", "&8Kliknij LPM aby użyć"
+            enchant {_sword} with unbreaking 255
+            set slot 16 of {_gui} to {_sword}
+
+            # ZOMBIE
+            set {_zombie} to zombie spawn egg named "&2&lᴀᴘᴏᴋᴀʟɪᴘsᴀ ᴢᴏᴍʙɪᴇ"
+            set lore of {_zombie} to "&7Przywołuje &240 zombie", "&8Kliknij PPM aby użyć"
+            set slot 20 of {_gui} to {_zombie}
+
+            # GRANAT
+            set {_granat} to tnt named "&c&lɢʀᴀɴᴀᴛ"
+            set lore of {_granat} to "&7Pojawia &c10x &7większe TNT", "&8Kliknij PPM aby użyć"
+            set slot 22 of {_gui} to {_granat}
+
+            # OBSYDIANIT
+            set {_obs} to crying obsidian named "&dObsydianit"
+            set lore of {_obs} to "&7Bardzo &dtwardy &7blok"
+            set slot 24 of {_gui} to {_obs}
+
+            # ==========================
+            # OBSYDIANITOWA ZBROJA
+            # ==========================
+
+            set {_helm} to netherite helmet named "&d&lᴏʙsʏᴅɪᴀɴɪᴛᴏᴡʏ ʜᴇʟᴍ"
+            enchant {_helm} with protection 6
+            enchant {_helm} with unbreaking 5
+            enchant {_helm} with thorns 3
+            set armor trim of {_helm} to silence trimmed with amethyst
+            set slot 28 of {_gui} to {_helm}
+
+            set {_chest} to netherite chestplate named "&d&lᴏʙsʏᴅɪᴀɴɪᴛᴏᴡᴀ ᴋʟᴀᴛᴀ"
+            enchant {_chest} with protection 6
+            enchant {_chest} with unbreaking 5
+            enchant {_chest} with thorns 3
+            set armor trim of {_chest} to silence trimmed with amethyst
+            set slot 30 of {_gui} to {_chest}
+
+            set {_legs} to netherite leggings named "&d&lᴏʙsʏᴅɪᴀɴɪᴛᴏᴡᴇ sᴘᴏᴅɴɪᴇ"
+            enchant {_legs} with protection 6
+            enchant {_legs} with unbreaking 5
+            enchant {_legs} with thorns 3
+            set armor trim of {_legs} to silence trimmed with amethyst
+            set slot 32 of {_gui} to {_legs}
+
+            set {_boots} to netherite boots named "&d&lᴏʙsʏᴅɪᴀɴɪᴛᴏᴡᴇ ʙᴜᴛʏ"
+            enchant {_boots} with protection 6
+            enchant {_boots} with unbreaking 5
+            enchant {_boots} with thorns 3
+            set armor trim of {_boots} to silence trimmed with amethyst
+            set slot 34 of {_gui} to {_boots}
+
+            open {_gui} to player
+            stop
+
+
+        # RELOAD
+        if arg-1 is "reload":
+            if player does not have permission "zyrocode.itemy":
+                send "&cNie masz permisji do tej komendy!"
+                stop
+
+            execute console command "sk reload zyrocode-zyroitemy.sk"
+            send "&8&l» &7Skrypt ZyroItemy został &aprzeładowany"
+            stop
+
+
+        send "&8&l» &7Użycie: /zyroitemy panel"
+        send "&8&l» &7Użycie: /zyroitemy reload"
+
+
+# ==========================
+# OBSYDIANIT BLOK
+# ==========================
+
+on place of crying obsidian:
+    if name of player's tool is "&dObsydianit":
+        set {obsydianit.%location of event-block%} to true
+
+on break of crying obsidian:
+    if {obsydianit.%location of event-block%} is set:
+
+        if gamemode of player is survival:
+
+            if {obsydianit.break.%location of event-block%} is not set:
+                set {obsydianit.break.%location of event-block%} to true
+                cancel event
+                send "&cMusisz wykopać ten blok jeszcze raz!"
+                stop
+
+            else:
+                delete {obsydianit.break.%location of event-block%}
+
+        delete {obsydianit.%location of event-block%}
+        cancel drops
+        drop crying obsidian named "&dObsydianit" at event-block
+
+
+# ==========================
+# WITHERBALL
+# ==========================
+
+on right click:
+    if player's tool is wither skeleton skull named "&8&lᴡɪᴛʜᴇʀʙᴀʟʟ":
+        cancel event
+        shoot wither skull from player
+
+on place of wither skeleton skull:
+    if name of player's tool is "&8&lᴡɪᴛʜᴇʀʙᴀʟʟ":
+        cancel event
+
+
+# ==========================
+# FIREBALL
+# ==========================
+
+on right click:
+    if player's tool is fire charge named "&c&lꜰɪʀᴇʙᴀʟʟ":
+        cancel event
+        shoot fireball from player
+
+
+# ==========================
+# ENDERBALL
+# ==========================
+
+on right click:
+    if player's tool is ender dragon spawn egg named "&d&lᴇɴᴅᴇʀʙᴀʟʟ":
+        cancel event
+        shoot dragon fireball from player
+
+
+# ==========================
+# MIECZ PIORUNÓW
+# ==========================
+
+on left click:
+    if player's tool is netherite sword named "&b&lᴍɪᴇᴄᴢ ᴘɪᴏʀᴜɴᴏᴡᴄóᴡ":
+        strike lightning at targeted block
+
+
+# ==========================
+# APOKALIPSA ZOMBIE
+# ==========================
+
+on right click:
+    if player's tool is zombie spawn egg named "&2&lᴀᴘᴏᴋᴀʟɪᴘsᴀ ᴢᴏᴍʙɪᴇ":
+
+        cancel event
+
+        if gamemode of player is survival:
+            remove 1 zombie spawn egg named "&2&lᴀᴘᴏᴋᴀʟɪᴘsᴀ ᴢᴏᴍʙɪᴇ" from player
+
+        loop 40 times:
+            spawn zombie at player
+
+
+# ==========================
+# GRANAT
+# ==========================
+
+on right click:
+    if player's tool is tnt named "&c&lɢʀᴀɴᴀᴛ":
+
+        cancel event
+
+        loop 10 times:
+            execute player command "tnt"
+
+        if gamemode of player is survival:
+            remove 1 tnt named "&c&lɢʀᴀɴᴀᴛ" from player
