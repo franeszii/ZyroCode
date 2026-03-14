@@ -11,45 +11,81 @@
 body{
 background:#111;
 color:white;
-font-family:sans-serif;
+font-family:'Cherry Bomb One', cursive;
 text-align:center;
+margin:0;
+}
+
+.navbar{
+background:#0d0d0d;
+padding:15px;
+}
+
+.navbar button{
+background:none;
+border:none;
+color:white;
+font-size:18px;
+margin:0 10px;
+cursor:pointer;
+font-family:'Cherry Bomb One', cursive;
+}
+
+.navbar button:hover{
+color:#00ff6a;
 }
 
 h1{
 color:#00ff6a;
-font-size:50px;
+font-size:55px;
 margin-top:40px;
 }
 
 .subtitle{
 color:gray;
+font-size:20px;
 margin-bottom:40px;
 }
 
-.skript-box{
-background:#2a2a2a;
-width:600px;
-margin:20px auto;
-padding:20px;
-border-radius:10px;
-display:flex;
-align-items:center;
-cursor:pointer;
-transition:0.2s;
+.container{
+width:700px;
+margin:auto;
 }
 
-.skript-box:hover{
+.script-box{
+background:#2a2a2a;
+padding:20px;
+margin:15px 0;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+cursor:pointer;
+transition:0.25s;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+.script-box:hover{
 background:#3a3a3a;
-transform:scale(1.02);
+transform:scale(1.03);
+}
+
+.left{
+display:flex;
+align-items:center;
 }
 
 .logo{
-width:50px;
-margin-right:20px;
+width:45px;
+margin-right:15px;
 }
 
-.name{
-font-size:22px;
+.script-name{
+font-size:24px;
+}
+
+.emoji{
+font-size:28px;
 }
 
 </style>
@@ -57,32 +93,57 @@ font-size:22px;
 
 <body>
 
+<div class="navbar">
+<button onclick="window.location.href='index.html'">Strona Główna</button>
+<button onclick="window.open('https://dc.gg/zyrocode')">Discord</button>
+<button onclick="window.open('https://1477245639724367974.botpanel.gg/')">ZyroBot</button>
+</div>
+
 <h1>SKRYPTY</h1>
 <div class="subtitle">kliknij aby pobrać</div>
 
-<div class="skript-box" onclick="download('downloads/zyroitemy.sk')">
+<div class="container">
+
+<div class="script-box" onclick="download('downloads/zyroitemy.sk')">
+<div class="left">
 <img src="logo.png" class="logo">
-<div class="name">Zyro Itemy</div>
+<div class="script-name">Zyro Itemy</div>
+</div>
+<div class="emoji">⚔️</div>
 </div>
 
-<div class="skript-box" onclick="download('downloads/daily.sk')">
+<div class="script-box" onclick="download('downloads/daily.sk')">
+<div class="left">
 <img src="logo.png" class="logo">
-<div class="name">Daily</div>
+<div class="script-name">Daily</div>
+</div>
+<div class="emoji">📅</div>
 </div>
 
-<div class="skript-box" onclick="download('downloads/socialmedia.sk')">
+<div class="script-box" onclick="download('downloads/socialmedia.sk')">
+<div class="left">
 <img src="logo.png" class="logo">
-<div class="name">Social Media</div>
+<div class="script-name">Social Media</div>
+</div>
+<div class="emoji">🌐</div>
 </div>
 
-<div class="skript-box" onclick="download('downloads/randomevents.sk')">
+<div class="script-box" onclick="download('downloads/randomevents.sk')">
+<div class="left">
 <img src="logo.png" class="logo">
-<div class="name">Random Events</div>
+<div class="script-name">Random Events</div>
+</div>
+<div class="emoji">🎲</div>
+</div>
+
 </div>
 
 <script>
 function download(file){
-window.location.href = file;
+const link = document.createElement("a");
+link.href = file;
+link.download = "";
+link.click();
 }
 </script>
 
