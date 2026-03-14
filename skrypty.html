@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>ZyroCode - Skrypty</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:sans-serif;
+text-align:center;
+}
+
+h1{
+color:#00ff6a;
+font-size:50px;
+margin-top:40px;
+}
+
+.subtitle{
+color:gray;
+margin-bottom:40px;
+}
+
+.skript-box{
+background:#2a2a2a;
+width:600px;
+margin:20px auto;
+padding:20px;
+border-radius:10px;
+display:flex;
+align-items:center;
+cursor:pointer;
+transition:0.2s;
+}
+
+.skript-box:hover{
+background:#3a3a3a;
+transform:scale(1.02);
+}
+
+.logo{
+width:50px;
+margin-right:20px;
+}
+
+.name{
+font-size:22px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>SKRYPTY</h1>
+<div class="subtitle">kliknij aby pobrać</div>
+
+<div class="skript-box" onclick="download('downloads/zyroitemy.sk')">
+<img src="logo.png" class="logo">
+<div class="name">Zyro Itemy</div>
+</div>
+
+<div class="skript-box" onclick="download('downloads/daily.sk')">
+<img src="logo.png" class="logo">
+<div class="name">Daily</div>
+</div>
+
+<div class="skript-box" onclick="download('downloads/socialmedia.sk')">
+<img src="logo.png" class="logo">
+<div class="name">Social Media</div>
+</div>
+
+<div class="skript-box" onclick="download('downloads/randomevents.sk')">
+<img src="logo.png" class="logo">
+<div class="name">Random Events</div>
+</div>
+
+<script>
+function download(file){
+window.location.href = file;
+}
+</script>
+
+</body>
+</html>
